@@ -82,7 +82,7 @@ variable "RDS_USERNAME" {
 }
 variable "RDS_PASSWORD" {
   description = "Password for the master DB user."
-  default     = "Go2J@1lT0uch"
+  default     = "test123"
 }
 
 variable "RDS_STORAGE_ENCRYPTION" {
