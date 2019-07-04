@@ -1,8 +1,8 @@
-resource "aws_security_group" "sg-testdb-appservers" {
+resource "aws_security_group" "sg_testdb-appservers" {
   tags = {
-    Name = "sg-${var.PROJECT_NAME}-testdb-appservers"
+    Name = "sg_${var.PROJECT_NAME}-testdb-appservers"
   }
-  name = "sg-${var.PROJECT_NAME}-testdb-appservers"
+  name = "sg_${var.PROJECT_NAME}-testdb-appservers"
   description = "Secutiry group for testdb appserver"
   vpc_id      = "${aws_vpc.main.id}"
 
@@ -13,7 +13,7 @@ resource "aws_security_group" "sg-testdb-appservers" {
   #  from_port = 80
   #  to_port = 80
   #  protocol = "tcp"
-  #  security_groups = ["${aws_security_group.sg-alb-testdb-alg.id}"]
+  #  security_groups = ["${aws_security_group.sg_alb-testdb-alg.id}"]
   #}
   # review 
   ingress {
@@ -31,7 +31,7 @@ resource "aws_security_group" "sg-testdb-appservers" {
 #  from_port = 80
 #  to_port = 80
 #  protocol = "tcp"
-#  security_groups = ["${aws_security_group.sg-alb-testdb-alg.id}"]
+#  security_groups = ["${aws_security_group.sg_alb-testdb-alg.id}"]
 #}
 
   egress {

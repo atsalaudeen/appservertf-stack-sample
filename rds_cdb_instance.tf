@@ -10,7 +10,7 @@ resource "aws_db_instance" "testdb-rds-prod" {
   publicly_accessible = "${var.RDS_PUBLICLY_ACCESSIBLE}"
   username = "${var.RDS_USERNAME}"
   password = "${var.RDS_PASSWORD}"
-  vpc_security_group_ids = ["${aws_security_group.sg-rds-testdb-prod.id}"]
+  vpc_security_group_ids = ["${aws_security_group.sg_rds-testdb-prod.id}"]
   db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.name}"
   copy_tags_to_snapshot = "false"
   #availability_zone = "${var.RDS_AVAILABILITY_ZONE}"
@@ -19,9 +19,11 @@ resource "aws_db_instance" "testdb-rds-prod" {
   #
   backup_window = "${var.RDS_BACKUP_WINDOW}"
   maintenance_window = "${var.RDS_MAINTENANCE_WINDOW}"
-
+  # add only to be able to destroy rds
+  snapshot_identifier     = "snapshot_name"
+  skip_final_snapshot = "true"
   storage_encrypted = "${var.RDS_STORAGE_ENCRYPTION}"
-  #kms_key_id = "arn:aws:kms:us-east-1:126538887105:key/a0dgg6de5-1c6d-4182-92e2-318067c2687f"
+  #kms_key_id = "gg6de5-1c6d-4182-92e2-318067c2687f"
 
   # set this to none default for production
   parameter_group_name = "default.mysql5.6"

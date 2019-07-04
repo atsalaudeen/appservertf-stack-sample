@@ -1,8 +1,8 @@
-resource "aws_security_group" "sg-rds-testdb-prod" {
+resource "aws_security_group" "sg_rds-testdb-prod" {
   tags = {
-    Name = "sg-${var.PROJECT_NAME}-rds-production"
+    Name = "sg_${var.PROJECT_NAME}-rds-production"
   }
-  name = "sg-${var.PROJECT_NAME}-rds-production"
+  name = "sg_${var.PROJECT_NAME}-rds-production"
   description = "Security group for RDS"
   vpc_id      = "${aws_vpc.main.id}"
   ingress {
@@ -16,7 +16,7 @@ resource "aws_security_group" "sg-rds-testdb-prod" {
     from_port = 3306
     to_port = 3306
     protocol = "tcp"
-    security_groups = ["${aws_security_group.sg-testdb-appservers.id}"]
+    security_groups = ["${aws_security_group.sg_testdb-appservers.id}"]
   }
 
   egress {

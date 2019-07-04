@@ -78,11 +78,11 @@ variable "RDS_PUBLICLY_ACCESSIBLE" {
 ## Create alternative method of authentication rather than hardcoding credentials.
 variable "RDS_USERNAME" {
   description = "Username for the master DB user."
-  default     = "testdbadmin"
+  default     = ""
 }
 variable "RDS_PASSWORD" {
   description = "Password for the master DB user."
-  default     = "Go2J@1lT0uch"
+  default     = ""
 }
 
 variable "RDS_STORAGE_ENCRYPTION" {
