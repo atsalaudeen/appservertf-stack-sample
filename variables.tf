@@ -133,33 +133,33 @@ variable "PEM_FILE_WEBSERVERS" {
 # VPC Variables
 variable "VPC_CIDR_BLOCK" {
   description = "Commondb VPC CIDR block "
-  default     = "10.107.0.0/16"
+  default     = "10.10.0.0/16"
 }
 
 # vpc public subnets
 variable "VPC_PUBLIC_SUBNET1_CIDR_BLOCK" {
   description = "Public subnet 1 for ... "
-  default     = "10.107.128.0/24"
+  default     = "10.10.1.0/24"
 }
 variable "VPC_PUBLIC_SUBNET2_CIDR_BLOCK" {
   description = "Public subnet 2 for ..."
-  default     = "10.107.160.0/24"
+  default     = "10.10.2.0/24"
 }
 variable "VPC_PUBLIC_SUBNET3_CIDR_BLOCK" {
   description = "Public subnet 3 for ..."
-  default     = "10.107.176.0/24"
+  default     = "10.10.3.0/24"
 }
 # vpc private subnets
 variable "VPC_PRIVATE_SUBNET1_CIDR_BLOCK" {
   description = "Private subnet 1 for ..."
-  default     = "10.107.0.0/20"
+  default     = "10.10.4.0/24"
 }
 variable "VPC_PRIVATE_SUBNET2_CIDR_BLOCK" {
   description = "Private subnet 2 for ..."
-  default     = "10.107.16.0/20"
+  default     = "10.10.5.0/24"
 }
 variable "VPC_PRIVATE_SUBNET3_CIDR_BLOCK" {
   description = "Private subnet 3 for ..."
-  default     = "10.107.32.0/20"
+  default     = "10.10.6.0/24"
 }
 
