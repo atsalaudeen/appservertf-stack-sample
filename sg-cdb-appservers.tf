@@ -1,11 +1,17 @@
-resource "aws_security_group" "sg_testdb-appservers" {
+resource "aws_security_group" "sg-test-appservers" {
   tags = {
-    Name = "sg_${var.PROJECT_NAME}-testdb-appservers"
+    Name = "sg_${var.PROJECT_NAME}-appservers-sg"
   }
-  name = "sg_${var.PROJECT_NAME}-testdb-appservers"
+  name = "sg_${var.PROJECT_NAME}-appservers-sg"
   description = "Secutiry group for testdb appserver"
   vpc_id      = "${aws_vpc.main.id}"
 
+  ingress {
+     from_port = 22
+     to_port = 22
+     protocol = "tcp"
+     cidr_blocks = ["${var.SSH_CIDR_APP_SERVER}"]
+   }
   # update this will all sg inbound rules allowed on port 80
   ## create the following associated security_groups
 
@@ -13,26 +19,16 @@ resource "aws_security_group" "sg_testdb-appservers" {
   #  from_port = 80
   #  to_port = 80
   #  protocol = "tcp"
-  #  security_groups = ["${aws_security_group.sg_alb-testdb-alg.id}"]
+  #  security_groups = ["${aws_security_group.sg-alb-test-appservers.id}"]
   #}
-  # review 
+
+  # Add Application Load balancer access, to the public facing alb security group
   ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["${var.VPC_CIDR_BLOCK}"]
+      from_port = 80
+      to_port = 80
+      protocol = "tcp"
+      security_groups = ["${aws_security_group.sg-alb-test-webservers.id}"]
   }
-
- # update this will all sg inbound rules allowed on port 80
-## create the following associated security_groups
-# add open vpn access
-
-#ingress {
-#  from_port = 80
-#  to_port = 80
-#  protocol = "tcp"
-#  security_groups = ["${aws_security_group.sg_alb-testdb-alg.id}"]
-#}
 
   egress {
     from_port = 0

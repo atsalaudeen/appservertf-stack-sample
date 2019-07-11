@@ -97,7 +97,7 @@ resource "aws_internet_gateway" "igw" {
   #subnet_id     = "${aws_subnet.public_subnet_1.id}"
   #depends_on = ["aws_internet_gateway.igw"]
   #tags = {
-#    Name = "${var.PROJECT_NAME}-vpc-NAT-gateway"
+#    Name = "${var.PROJECT_NAME}-vpc-nat-gw"
 #  }
 #}
 
@@ -129,37 +129,38 @@ resource "aws_route_table" "private" {
     # this should be via nat gateway as below
     #gateway_id = "${aws_nat_gateway.ngw.id}"
   }
+
+    #depends_on = ["aws_internet_gateway.igw"]
   tags = {
     Name = "${var.PROJECT_NAME}-private-route-table"
   }
 }
 # Route table for Private subnets
 
-
 # Route Table association with public subnets
-resource "aws_route_table_association" "testdb_assoc_rtb_public_subnet1" {
+resource "aws_route_table_association" "assoc_rtb_public_subnet1" {
   subnet_id      = "${aws_subnet.public_subnet_1.id}"
   route_table_id = "${aws_route_table.public.id}"
 }
-resource "aws_route_table_association" "testdb_assoc_rtb_public_subnet2" {
+resource "aws_route_table_association" "assoc_rtb_public_subnet2" {
   subnet_id      = "${aws_subnet.public_subnet_2.id}"
   route_table_id = "${aws_route_table.public.id}"
 }
-resource "aws_route_table_association" "testdb_assoc_rtb_public_subnet3" {
+resource "aws_route_table_association" "assoc_rtb_public_subnet3" {
   subnet_id      = "${aws_subnet.public_subnet_3.id}"
   route_table_id = "${aws_route_table.public.id}"
 }
 
 # Route table association with private subnets
-resource "aws_route_table_association" "testdb_assoc_rtb_private_subnet1" {
+resource "aws_route_table_association" "assoc_rtb_private_subnet1" {
   subnet_id      = "${aws_subnet.private_subnet_1.id}"
   route_table_id = "${aws_route_table.private.id}"
 }
-resource "aws_route_table_association" "testdb_assoc_rtb_private_subnet2" {
+resource "aws_route_table_association" "assoc_rtb_private_subnet2" {
   subnet_id      = "${aws_subnet.private_subnet_2.id}"
   route_table_id = "${aws_route_table.private.id}"
 }
-resource "aws_route_table_association" "testdb_assoc_rtb_private_subnet3" {
+resource "aws_route_table_association" "assoc_rtb_private_subnet3" {
   subnet_id      = "${aws_subnet.private_subnet_3.id}"
   route_table_id = "${aws_route_table.private.id}"
 }
