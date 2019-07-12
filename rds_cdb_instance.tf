@@ -28,6 +28,10 @@ resource "aws_db_instance" "testdb-rds-prod" {
   #parameter_group_name = "default.mysql5.6"
   parameter_group_name = "${aws_db_parameter_group.testdb-parameter-group.name}"
 
+  # not for production
+  #snapshot_identifier = "snapshotname01"
+  skip_final_snapshot = true
+
   tags = {
       workload-type = "testprod"
   }

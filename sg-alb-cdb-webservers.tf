@@ -1,9 +1,9 @@
 resource "aws_security_group" "sg-alb-test-webservers" {
   tags = {
-    Name = "${var.PROJECT_NAME}-webservers-ALB"
+    Name = "${var.PROJECT_NAME}-webservers-ALB-sg"
   }
-  name = "${var.PROJECT_NAME}-webservers-ALB"
-  description = "Internet facing alb for common d"
+  name = "${var.PROJECT_NAME}-webservers-ALB-sg"
+  description = "Internet facing alb for test env"
   vpc_id      = "${aws_vpc.main.id}"
 
 # for production, only https from specific port range only on https

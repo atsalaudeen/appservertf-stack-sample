@@ -1,8 +1,9 @@
 resource "aws_security_group" "sg-test-appservers" {
   tags = {
-    Name = "sg_${var.PROJECT_NAME}-appservers-sg"
+    Name = "${var.PROJECT_NAME}-appservers-sg"
   }
-  name = "sg_${var.PROJECT_NAME}-appservers-sg"
+
+  name = "${var.PROJECT_NAME}-appservers-sg"
   description = "Secutiry group for testdb appserver"
   vpc_id      = "${aws_vpc.main.id}"
 
@@ -36,5 +37,7 @@ resource "aws_security_group" "sg-test-appservers" {
     protocol = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  
+
 }
 

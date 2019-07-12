@@ -1,8 +1,8 @@
 resource "aws_security_group" "sg-alb-test-appservers" {
   tags = {
-    Name = "${var.PROJECT_NAME}-appservers-ALB"
+    Name = "${var.PROJECT_NAME}-appservers-ALB-sg"
   }
-  name = "${var.PROJECT_NAME}-appservers-ALB"
+  name = "${var.PROJECT_NAME}-appservers-ALB-sg"
   description = "App server alb sg"
   vpc_id      = "${aws_vpc.main.id}"
 
