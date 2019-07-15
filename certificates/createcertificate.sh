@@ -1,11 +1,5 @@
 #!/bin/bash 
 
-if [[ -r certificates ]]; then 
-    cd certificates
-else 
-    mkdir certificates & cd certificates
-fi 
-
 # Generate private key
 openssl genrsa 2048 > ca-test-private-key.pem
 
