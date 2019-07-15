@@ -6,19 +6,12 @@ resource "aws_security_group" "sg-alb-test-appservers" {
   description = "App server alb sg"
   vpc_id      = "${aws_vpc.main.id}"
 
-# only https for external but http to accept from the appservers on http
+# only http only from webservers as this is internal facing ALB
   ingress {
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    security_groups = ["${aws_security_group.sg-test-appservers.id}"]
-  }
-
-  ingress {
-    from_port = 443
-    to_port = 443
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    security_groups = ["${aws_security_group.sg-test-webservers.id}"]
   }
 
   egress {

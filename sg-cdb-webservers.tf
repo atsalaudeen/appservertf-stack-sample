@@ -3,7 +3,7 @@ resource "aws_security_group" "sg-test-webservers" {
     Name = "${var.PROJECT_NAME}-webservers-sg"
   }
   name = "${var.PROJECT_NAME}-webservers-sg"
-  description = "Secutiry group for test appserver"
+  description = "Secutiry group for test webserver"
   vpc_id      = "${aws_vpc.main.id}"
 
 # update this to your host ip or open vpc access
@@ -14,25 +14,13 @@ resource "aws_security_group" "sg-test-webservers" {
     cidr_blocks = ["${var.SSH_CIDR_WEB_SERVER}"]
   }
 
-  # update this will all sg inbound rules allowed on port 80
-  ## create the following associated security_groups
-
-# Add Application Load balancer access, should accept http only from load balancer
+# Add Application Load balancer access, should accept http only from load balancer only
 
   ingress {
     from_port = 80
     to_port = 80
     protocol = "tcp"
-    security_groups = ["${aws_security_group.sg-alb-test-appservers.id}"]
-  }
-
-  # Add Application Load balancer access, all external traffic on https or to specific subnet e.g cloud front IP addresses
-
-  ingress {
-      from_port = 443
-      to_port = 443
-      protocol = "tcp"
-      security_groups = ["0.0.0.0/0"]
+    security_groups = ["${aws_security_group.sg-alb-test-webservers.id}"]
   }
 
   egress {
