@@ -35,10 +35,10 @@ resource "aws_lb_target_group" "back_end" {
                 path = "/"
                 port = "80"
                 protocol = "HTTP"
-                healthy_threshold = 2
-                unhealthy_threshold = 10
-                interval = 5
-                timeout = 10
+                healthy_threshold = 5
+                unhealthy_threshold = 2
+                interval = 30
+                timeout = 5
                 matcher = "200-308"
         }
 }

@@ -26,7 +26,7 @@ resource "aws_autoscaling_group" "test_webserver" {
   desired_capacity          = 1
   force_delete              = true
   launch_configuration      = "${aws_launch_configuration.asg_temp_for_webserver.name}"
-  vpc_zone_identifier       = ["${aws_subnet.private_subnet_1.id}", "${aws_subnet.private_subnet_2.id}", "${aws_subnet.private_subnet_3.id}"]
+  vpc_zone_identifier       = ["${aws_subnet.public_subnet_1.id}", "${aws_subnet.public_subnet_2.id}", "${aws_subnet.public_subnet_3.id}"]
   target_group_arns         = ["${aws_lb_target_group.front_end.arn}"]
 
   tags = [
