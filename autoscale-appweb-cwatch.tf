@@ -16,7 +16,7 @@ resource "aws_cloudwatch_metric_alarm" "highcpu-appserver-alarm" {
   evaluation_periods  = "3"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "180"
+  period              = "60"
   statistic           = "Average"
   threshold           = "60"
 
@@ -45,7 +45,7 @@ resource "aws_cloudwatch_metric_alarm" "highcpu-webserver-alarm" {
   evaluation_periods  = "3"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "180"
+  period              = "60"
   statistic           = "Average"
   threshold           = "60"
 
@@ -76,7 +76,7 @@ resource "aws_cloudwatch_metric_alarm" "lowcpu-appserver-alarm" {
   evaluation_periods  = "3"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "900"
+  period              = "300"
   statistic           = "Average"
   threshold           = "30"
 
@@ -105,7 +105,7 @@ resource "aws_cloudwatch_metric_alarm" "lowcpu-webserver-alarm" {
   evaluation_periods  = "3"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
-  period              = "900"
+  period              = "300"
   statistic           = "Average"
   threshold           = "30"
 
