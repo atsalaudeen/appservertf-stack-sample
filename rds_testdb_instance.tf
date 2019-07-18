@@ -13,8 +13,7 @@ resource "aws_db_instance" "testdb-rds-prod" {
   vpc_security_group_ids = ["${aws_security_group.sg-rds-test.id}"]
   db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.name}"
   copy_tags_to_snapshot = "false"
-  #availability_zone = "${var.RDS_AVAILABILITY_ZONE}"
-  #availability_zone = "${data.availability_zone.available.names[1]}
+  availability_zone = "${var.RDS_AVAILABILITY_ZONE}"
   multi_az = "false"
   #
   backup_window = "${var.RDS_BACKUP_WINDOW}"
@@ -22,7 +21,10 @@ resource "aws_db_instance" "testdb-rds-prod" {
 
   storage_encrypted = "${var.RDS_STORAGE_ENCRYPTION}"
   # some random key, obtain real key on aws
-  #kms_key_id = "ea0e7cbd-b968-4b2a-a544-ce66754a205b"
+  #kms_key_id = "ea0e7cbd-b966-4a2a-a544-ce66554a205b"
+
+  # enable storage autoscaling
+  max_allocated_storage   = "${var.rds_max_allocated_storage}"
 
   # set this to none default for production
   #parameter_group_name = "default.mysql5.6"

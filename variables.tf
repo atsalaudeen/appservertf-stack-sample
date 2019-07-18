@@ -25,10 +25,10 @@ variable "RDS_INSTANCE_ID" {
     default = "test-env-db"
 }
 
-#variable "RDS_AVAILABILITY_ZONE" {
-#    description = "The availability zone to place the instance into."
-#    default = "us-east-1b"
-#}
+variable "RDS_AVAILABILITY_ZONE" {
+    description = "The availability zone to place the instance into."
+    default = "us-east-1b"
+}
 
 # Incease for production env
 variable "RDS_INSTANCE_CLASS" {
@@ -52,7 +52,7 @@ variable "RDS_ALLOCATED_STORAGE" {
   default     = "20"
 }
 
-variable "RDS_MAX_ALLOCATED_STORAGE" {
+variable "rds_max_allocated_storage" {
   description = "Enable storage auto-scaling with this. Size in gb"
   default     = "100"
 }
