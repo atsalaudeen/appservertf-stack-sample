@@ -19,6 +19,7 @@ resource "aws_security_group" "sg-test-appservers" {
       to_port = 80
       protocol = "tcp"
       security_groups = ["${aws_security_group.sg-alb-test-appservers.id}"]
+      description = "http access from app server"
   }
 
   egress {

@@ -25,10 +25,15 @@ variable "RDS_INSTANCE_ID" {
     default = "test-env-db"
 }
 
-#variable "RDS_AVAILABILITY_ZONE" {
-#    description = "The availability zone to place the instance into."
-#    default = "us-east-1b"
-#}
+variable "RDS_AVAILABILITY_ZONE" {
+    description = "The availability zone to place the instance into."
+    default = "us-east-1b"
+}
+
+variable "rds_storage_type" {
+  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD). The default is 'io1' if iops is specified, 'standard' if not. Note that this behaviour is different from the AWS web console, where the default is 'gp2'."
+  default     = "gp2"
+}
 
 # Incease for production env
 variable "RDS_INSTANCE_CLASS" {
@@ -52,7 +57,7 @@ variable "RDS_ALLOCATED_STORAGE" {
   default     = "20"
 }
 
-variable "RDS_MAX_ALLOCATED_STORAGE" {
+variable "rds_max_allocated_storage" {
   description = "Enable storage auto-scaling with this. Size in gb"
   default     = "100"
 }
@@ -98,6 +103,11 @@ variable "RDS_PASSWORD" {
 variable "RDS_STORAGE_ENCRYPTION" {
     description = "Specifies whether the DB instance is encrypted"
     default = "false"
+}
+
+variable "rds_kms_key_id" {
+  description = "The ARN for the KMS encryption key. If creating an encrypted replica, set this to the destination KMS ARN. If storage_encrypted is set to true and kms_key_id is not specified the default KMS key created in your account will be used"
+  default     = "3450985-1c6d-4182-92e2-31xy6666c2687f"
 }
 
 # Attached parameter group
@@ -174,4 +184,5 @@ variable "VPC_PRIVATE_SUBNET3_CIDR_BLOCK" {
   description = "Private subnet 3 for ..."
   default     = "10.12.6.0/24"
 }
+
 
