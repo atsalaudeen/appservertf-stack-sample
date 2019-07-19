@@ -2,7 +2,7 @@ resource "aws_db_instance" "testdb-rds-prod" {
   identifier = "${var.RDS_INSTANCE_ID}"
   name = "${var.RDS_NAME}"
   allocated_storage = "${var.RDS_ALLOCATED_STORAGE}"
-  storage_type = "gp2"
+  storage_type = "${var.rds_storage_type}"
   engine = "${var.RDS_ENGINE}"
   engine_version = "${var.RDS_ENGINE_VERSION}"
   instance_class = "${var.RDS_INSTANCE_CLASS}"
@@ -20,8 +20,9 @@ resource "aws_db_instance" "testdb-rds-prod" {
   maintenance_window = "${var.RDS_MAINTENANCE_WINDOW}"
 
   storage_encrypted = "${var.RDS_STORAGE_ENCRYPTION}"
+
   # some random key, obtain real key on aws
-  #kms_key_id = "ea0e7cbd-b966-4a2a-a544-ce66554a205b"
+  #kms_key_id = "${var.rds_kms_key_id}"
 
   # enable storage autoscaling
   max_allocated_storage   = "${var.rds_max_allocated_storage}"

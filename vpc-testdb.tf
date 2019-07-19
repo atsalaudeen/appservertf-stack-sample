@@ -20,7 +20,8 @@ resource "aws_subnet" "public_subnet_1" {
   availability_zone = "${data.aws_availability_zones.available.names[0]}"
   map_public_ip_on_launch = "true"
   tags = {
-    Name = "${var.PROJECT_NAME}-vpc-public-subnet-1"
+    #Name = "${var.PROJECT_NAME}-vpc-public-subnet-1"
+    Name = "${data.aws_availability_zones.available.names[0]} ${var.PROJECT_NAME} public-subnet1)"    
   }
 }
 #public Subnet 2
@@ -30,7 +31,7 @@ resource "aws_subnet" "public_subnet_2" {
   availability_zone = "${data.aws_availability_zones.available.names[1]}"
   map_public_ip_on_launch = "true"
   tags = {
-    Name = "${var.PROJECT_NAME}-vpc-public-subnet-2"
+    Name = "${data.aws_availability_zones.available.names[1]} ${var.PROJECT_NAME} public-subnet2)"
   }
 }
 
@@ -41,7 +42,7 @@ resource "aws_subnet" "public_subnet_3" {
   availability_zone = "${data.aws_availability_zones.available.names[2]}"
   map_public_ip_on_launch = "true"
   tags = {
-    Name = "${var.PROJECT_NAME}-vpc-public-subnet-3"
+    Name = "${data.aws_availability_zones.available.names[2]} ${var.PROJECT_NAME} public-subnet3)"
   }
 }
 
@@ -51,7 +52,7 @@ resource "aws_subnet" "private_subnet_1" {
   cidr_block = "${var.VPC_PRIVATE_SUBNET1_CIDR_BLOCK}"
   availability_zone = "${data.aws_availability_zones.available.names[0]}"
   tags = {
-    Name = "${var.PROJECT_NAME}-vpc-private-subnet-1"
+    Name = "${data.aws_availability_zones.available.names[0]} ${var.PROJECT_NAME} private-subnet1)"
   }
 }
 # private subnet 2
@@ -60,7 +61,7 @@ resource "aws_subnet" "private_subnet_2" {
   cidr_block = "${var.VPC_PRIVATE_SUBNET2_CIDR_BLOCK}"
   availability_zone = "${data.aws_availability_zones.available.names[1]}"
   tags = {
-    Name = "${var.PROJECT_NAME}-vpc-private-subnet-2"
+    Name = "${data.aws_availability_zones.available.names[1]} ${var.PROJECT_NAME} private-subnet2)"
   }
 }
 
@@ -70,7 +71,7 @@ resource "aws_subnet" "private_subnet_3" {
   cidr_block = "${var.VPC_PRIVATE_SUBNET3_CIDR_BLOCK}"
   availability_zone = "${data.aws_availability_zones.available.names[2]}"
   tags = {
-    Name = "${var.PROJECT_NAME}-vpc-private-subnet-3"
+    Name = "${data.aws_availability_zones.available.names[2]} ${var.PROJECT_NAME} private-subnet3)"
   }
 }
 
@@ -110,12 +111,11 @@ resource "aws_route_table" "public" {
     gateway_id = "${aws_internet_gateway.igw.id}"
   }
 
-# TO DO ADD VPC PEERING ROUTE HERE
-
   tags = {
     Name = "${var.PROJECT_NAME}-public-route-table"
   }
 }
+
 
 # nat gw is paid.
 # create a private nat instance and update
@@ -128,6 +128,8 @@ resource "aws_route_table" "private" {
     gateway_id = "${aws_internet_gateway.igw.id}"
     # this should be via nat gateway as below
     #gateway_id = "${aws_nat_gateway.ngw.id}"
+
+
   }
 
     #depends_on = ["aws_internet_gateway.igw"]
